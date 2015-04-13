@@ -1,0 +1,10 @@
+Package: WISKIr
+Title: Acquires data from WISKI web server 
+Version: 1.1.1
+Date: 2015-4-13
+Author: Kevin Shook, Centre for Hydrology, University of Saskatchewan
+Maintainer: Kevin Shook <kevin.shook@usask.ca>
+Description: Functions to acquire a) the set of time series for a station, b) the metadata for a specific times series, c) the values for a specified time series over a specified range of dates.
+Depends: stringr
+License: GPL 3
+URL: www.usask.ca/hydrology
