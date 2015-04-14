@@ -2,7 +2,7 @@
 #' @description Returns times, values, and quality codes for a specified interval of a specified time series.
 #' @param timeseries Required. Character vector containing the WISKI time series ID number, which is returned by find_WISKI_timeseries. Cannot contain wild card characters.
 #' @param startDate Optional. Character vector of the starting date of data being queried. Must be in the form 'yyyy-mm-dd'. The default value is '1900-01-01'.
-#' @param edndDate Optional. Character vector of the ending date of data being queried. Must be in the form 'yyyy-mm-dd'. the default value is today's date.
+#' @param endDate Optional. Character vector of the ending date of data being queried. Must be in the form 'yyyy-mm-dd'. The default value is today's date.
 #' @param site.url Optional. Optional. A character vector containing the url of the WISKI web server. Defaults to the Global Institute for Water Security (GIWS) server: "http://giws.usask.ca:8080/
 #' @details As this packages is intended for use by the Saskatoon hydrological community, it is usually unnecessary to specify the web server.
 #' @return Returnes a dataframe with three variables: \item{time}{R time value} \item{variable name}{time series values} \item{QualityCode}{time series quality codes}
@@ -37,7 +37,6 @@ get_WISKI_timeseries_values <- function(timeSeries, startDate='', endDate='', si
     endDate <- Sys.Date()
   
   WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,sep='')
-  
   
   # create name for variable from metadata for time series
   variable.name <- get_WISKI_timeseries_variablename(timeSeries)
