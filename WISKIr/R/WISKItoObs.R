@@ -18,10 +18,10 @@ WISKItoObs <- function(WISKItimeseries, timezone=''){
     var.name <- 't.1'
   else if (str_detect(obs.name, ignore.case('percent')))
     var.name <- 'rh.1'
+  else if (str_detect(obs.name, ignore.case('millim')))
+    var.name <- 'p.1' 
   else if (str_detect(obs.name, ignore.case('met')))
     var.name <- 'u.1'
-  else if (str_detect(obs.name, ignore.case('millim')))
-    var.name <- 'p.1'
   else{
     cat(obs.name,' not a recognised obs variable\n', sep='')
     var.name <- obs.name
