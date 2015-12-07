@@ -14,13 +14,13 @@ WISKItoObs <- function(WISKItimeseries, timezone=''){
   # converts a WISKI timeseries object to a CRHM obs object
   obs.name <- names(WISKItimeseries)[2]
   
-  if (str_detect(obs.name, ignore.case('degree_Celsius')))
+  if (str_detect(obs.name, fixed('Celsius', ignore_case = TRUE)))
     var.name <- 't.1'
-  else if (str_detect(obs.name, ignore.case('percent')))
+  else if (str_detect(obs.name, fixed('percent', ignore_case = TRUE)))
     var.name <- 'rh.1'
-  else if (str_detect(obs.name, ignore.case('millim')))
+  else if (str_detect(obs.name, fixed('millim', ignore_case = TRUE)))
     var.name <- 'p.1' 
-  else if (str_detect(obs.name, ignore.case('met')))
+  else if (str_detect(obs.name, fixed('met', ignore_case = TRUE)))
     var.name <- 'u.1'
   else{
     cat(obs.name,' not a recognised obs variable\n', sep='')
