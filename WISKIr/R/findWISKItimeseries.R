@@ -23,7 +23,7 @@ findWISKItimeseries <- function(stationName, site.url='http://giws.usask.ca:8080
   }
   
   # find spaces and replace with '%20'
-  stationName <- str_replace(stationName, ' ', '%20')
+  stationName <- stringr::str_replace(stationName, ' ', '%20')
   
   WISKIstring <- paste(site.url, stock, stationName, sep='')
   data <- readLines(WISKIstring)
