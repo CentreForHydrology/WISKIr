@@ -1,0 +1,13 @@
+citHeader("To cite WISKIr in publications use:")
+
+citEntry(entry = "Manual",
+  title        = "{WISKIr}: acquires data from a WISKI web server",
+  author       = personList(as.person("Kevin Shook")),
+  year         = "2015",
+  url          = "www.usask.ca/hydrology/RPkgs.php/",
+
+  textVersion  =
+  paste("Kevin Shook (2015).",
+        "WISKIr: acquires data from a WISKI web server.",
+        "URL www.usask.ca/hydrology/RPkgs.php/.")
+)

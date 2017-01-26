@@ -1,6 +1,6 @@
 getWISKIvariablename <- function(timeSeries, site.url){
   # reads time series metadata from the WISKI server and returns a composite variable name
-  header <- getWISKImetadata(timeSeries)
+  header <- getWISKImetadata(timeSeries, site.url)
   var.name <- paste(header$value[6], header$value[7], sep='.')
   return(var.name)
 }

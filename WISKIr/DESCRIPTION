@@ -1,10 +1,16 @@
 Package: WISKIr
-Title: Acquires data from WISKI web server 
-Version: 1.1.1
-Date: 2015-4-13
+Title: Acquires data from a WISKI web server
+Version: 2.1.3
+Date: 2016-12-09
 Author: Kevin Shook, Centre for Hydrology, University of Saskatchewan
 Maintainer: Kevin Shook <kevin.shook@usask.ca>
-Description: Functions to acquire a) the set of time series for a station, b) the metadata for a specific times series, c) the values for a specified time series over a specified range of dates.
-Depends: stringr
-License: GPL 3
+Description: Functions to acquire a) the set of time series for a station, b)
+    the metadata for a specific times series, c) the values for a specified time
+    series over a specified range of dates.
+Depends: R (>= 3.3)
+Imports: stringr (>= 1.0)
+License: GPL-3
 URL: www.usask.ca/hydrology
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2016-05-22 20:35:47 UTC; kevin
