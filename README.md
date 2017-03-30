@@ -1,2 +1,2 @@
 # WISKIr
-Functions for retrieving data from a Wiski database
+Functions for retrieving data from a Wiski web server.
