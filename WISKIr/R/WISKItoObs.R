@@ -6,7 +6,7 @@
 #' @author Kevin Shook
 #' @seealso \code{\link{getWISKIvalues}}
 #' @examples
-#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30')
+#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
 #' FiseraTobs <- WISKItoObs(FiseraTvalues, timezone='Etc/GMT+7')
 #' @export
 

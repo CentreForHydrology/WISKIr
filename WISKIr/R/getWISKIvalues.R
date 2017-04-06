@@ -3,18 +3,19 @@
 #' @param timeSeries Required. Character string containing the WISKI time series ID number, which is returned by \code{findWISKItimeseries}. Cannot contain wild card characters.
 #' @param startDate Optional. Character vector of the starting date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is \code{'1900-01-01'}.
 #' @param endDate Optional. Character vector of the ending date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is today's date.
+#' @param timezone Required. Time zone for the data. Can be any time zone string sed by \code{Java} such as \option{GMT+5}, or \option{MST}. 
 #' @param site.url Optional. A character string containing the url of the WISKI web server. Defaults to the Global Institute for Water Security (GIWS) server: \code{'http://giws.usask.ca:8080/'}.  As this package is intended for use by the GIWS hydrological community, it is usually unnecessary to specify the web server.
 #' @return  If unsuccessful, returns \code{FALSE}. If successful, returns a dataframe with three variables: \item{time}{R time value} \item{variable name}{time series values} \item{QualityCode}{time series quality codes}
 #' @author Kevin Shook
 #' @seealso \code{\link{getWISKImetadata}} \code{\link{findWISKItimeseries}}
 #' @examples
 #' # get values for Fisera Ridge air temperatures (Original time series) 
-#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30')
+#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
 #' summary(FiseraTvalues)
 #' @export
 
 getWISKIvalues <- function(timeSeries='', startDate='1900-01-01', 
-                                        endDate='', site.url='http://giws.usask.ca:8080/'){
+                                        endDate='', timezone='', site.url='http://giws.usask.ca:8080/'){
   # reads a time series from the WISKI server and returns a dataframe
   # this version reads ASCII data
   # format for WISKI dates must be yyyy-mm-dd
@@ -33,14 +34,19 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
     return(FALSE)
   }
   
+  if (timezone == ''){
+    cat("Error: missing time zone'\n")
+    return(FALSE)
+  }
+  
   if (startDate == '')
     startDate <- '1900-01-01'
   
   if(endDate == '')
     endDate <- Sys.Date()
   
-  WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,sep='')
-  
+  WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,'&timezone=',timezone,sep='')
+  #WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,sep='')
   # create name for variable from metadata for time series
   variable.name <- getWISKIvariablename(timeSeries, site.url)
   
