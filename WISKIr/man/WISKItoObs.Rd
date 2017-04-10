@@ -17,7 +17,7 @@ WISKItoObs(WISKItimeseries, timezone = "", varName = "")
 Converts the WISKI date/time to a CRHM datetime. If possible, it will also convert the variable name to a CRHM variable name. Note that this may be incorrect, as it is attempting to infer the variable from its units.
 }
 \examples{
-FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30')
+FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
 FiseraTobs <- WISKItoObs(FiseraTvalues, timezone='Etc/GMT+7')
 }
 \author{

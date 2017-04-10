@@ -5,7 +5,7 @@
 \title{Gets values of a WISKI time series}
 \usage{
 getWISKIvalues(timeSeries = "", startDate = "1900-01-01", endDate = "",
-  site.url = "http://giws.usask.ca:8080/")
+  timezone = "", site.url = "http://giws.usask.ca:8080/")
 }
 \arguments{
 \item{timeSeries}{Required. Character string containing the WISKI time series ID number, which is returned by \code{findWISKItimeseries}. Cannot contain wild card characters.}
@@ -13,6 +13,8 @@ getWISKIvalues(timeSeries = "", startDate = "1900-01-01", endDate = "",
 \item{startDate}{Optional. Character vector of the starting date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is \code{'1900-01-01'}.}
 
 \item{endDate}{Optional. Character vector of the ending date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is today's date.}
+
+\item{timezone}{Required. Time zone for the data. Can be any time zone string sed by \code{Java} such as \option{GMT+5}, or \option{MST}.}
 
 \item{site.url}{Optional. A character string containing the url of the WISKI web server. Defaults to the Global Institute for Water Security (GIWS) server: \code{'http://giws.usask.ca:8080/'}.  As this package is intended for use by the GIWS hydrological community, it is usually unnecessary to specify the web server.}
 }
@@ -24,7 +26,7 @@ Returns times, values, and quality codes for a specified interval of a specified
 }
 \examples{
 # get values for Fisera Ridge air temperatures (Original time series) 
-FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30')
+FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
 summary(FiseraTvalues)
 }
 \author{
