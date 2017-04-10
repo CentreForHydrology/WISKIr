@@ -3,7 +3,7 @@
 #' @param timeSeries Required. Character string containing the WISKI time series ID number, which is returned by \code{findWISKItimeseries}. Cannot contain wild card characters.
 #' @param startDate Optional. Character vector of the starting date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is \code{'1900-01-01'}.
 #' @param endDate Optional. Character vector of the ending date of data being queried. Must be in the form \code{'yyyy-mm-dd'}. The default value is today's date.
-#' @param timezone Required. Time zone for the data. Can be any time zone string sed by \code{Java} such as \option{GMT+5}, or \option{MST}. 
+#' @param timezone Required. Time zone for the data. Can be any time zone string sed by \code{Java} such as \option{GMT-5}, or \option{MST}. 
 #' @param site.url Optional. A character string containing the url of the WISKI web server. Defaults to the Global Institute for Water Security (GIWS) server: \code{'http://giws.usask.ca:8080/'}.  As this package is intended for use by the GIWS hydrological community, it is usually unnecessary to specify the web server.
 #' @return  If unsuccessful, returns \code{FALSE}. If successful, returns a dataframe with three variables: \item{time}{R time value} \item{variable name}{time series values} \item{QualityCode}{time series quality codes}
 #' @author Kevin Shook
