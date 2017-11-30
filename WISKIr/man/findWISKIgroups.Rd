@@ -18,10 +18,9 @@ Finds all groups on the Wiski server
 \examples{
 groups <- findWISKIgroups()
 }
-\author{
-Kevin Shook
-}
 \seealso{
 \code{\link{findWISKIstations}}  \code{\link{findWISKItimeseries}}
 }
-
+\author{
+Kevin Shook
+}

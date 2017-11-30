@@ -22,10 +22,9 @@ Returns metadata of a specified time series.
 FiseraTmetadata <- getWISKImetadata('9296042')
 print(FiseraTmetadata)
 }
-\author{
-Kevin Shook
-}
 \seealso{
 \code{\link{getWISKIvalues}} \code{\link{findWISKItimeseries}}
 }
-
+\author{
+Kevin Shook
+}

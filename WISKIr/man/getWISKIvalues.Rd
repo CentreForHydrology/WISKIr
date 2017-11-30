@@ -29,10 +29,9 @@ Returns times, values, and quality codes for a specified interval of a specified
 FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
 summary(FiseraTvalues)
 }
-\author{
-Kevin Shook
-}
 \seealso{
 \code{\link{getWISKImetadata}} \code{\link{findWISKItimeseries}}
 }
-
+\author{
+Kevin Shook
+}

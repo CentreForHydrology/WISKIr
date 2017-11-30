@@ -21,10 +21,9 @@ Queries a WISKI web server to get a list of available time series which have the
 FiseraTimeseries <- findWISKItimeseries('Fisera*')
 print(FiseraTimeseries)
 }
-\author{
-Kevin Shook
-}
 \seealso{
 \code{\link{getWISKImetadata}} \code{\link{getWISKIvalues}}
 }
-
+\author{
+Kevin Shook
+}

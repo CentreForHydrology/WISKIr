@@ -10,4 +10,3 @@ Using the functions, data values can be downloaded directly from a WISKI web ser
 \references{
 To cite \pkg{WISKIr} in publications, use the command \code{citation('WISKIr')} to get the current version of the citation.
 }
-

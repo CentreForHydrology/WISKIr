@@ -21,10 +21,9 @@ Finds all stations on the Wiski server
 \examples{
 stations <- findWISKIstations()
 }
-\author{
-Kevin Shook
-}
 \seealso{
 \code{\link{findWISKItimeseries}} \code{\link{findWISKIgroups}}
 }
-
+\author{
+Kevin Shook
+}
