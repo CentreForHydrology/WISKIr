@@ -50,10 +50,23 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   # create name for variable from metadata for time series
   variable.name <- getWISKIvariablename(timeSeries, site.url)
   
-  # replace spaces with underscores in variable name
-  #variable.name <- str_replace(variable.name, ' ', '_')
-  
-  data <- utils::read.table(WISKIstring, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
+    
+  # do something, or tell me why it failed
+  fetchdata <- function(url){
+    tryCatch(
+        ## This is what I want to do:
+        data <- utils::read.table(url, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
+        ,
+        ## But if an error occurs, do the following: 
+        error=function(error_message) {
+            message("Skipping this variable becaues no data for this period.")
+            message(error_message)
+            return(NA)
+        }
+    )
+}
+  data <- fetchdata(WISKIstring)
+  if(!is.na(NA)) {
   names(data) <- c('time', variable.name,'QualityCode')
   
   # convert WISKI date/time to R time
@@ -61,6 +74,6 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   data$time <- strptime(as.character(data$time), format='%Y-%m-%d %H:%M:%S')
   # convert data to numeric - missing values will be NA
   data[,2] <- as.numeric(as.character(data[,2]))
-  
+  }
   return(data)
 }
