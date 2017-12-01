@@ -26,7 +26,7 @@ Returns times, values, and quality codes for a specified interval of a specified
 }
 \examples{
 # get values for Fisera Ridge air temperatures (Original time series) 
-FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
+FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='MST')
 summary(FiseraTvalues)
 }
 \seealso{

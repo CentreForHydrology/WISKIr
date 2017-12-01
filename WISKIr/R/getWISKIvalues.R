@@ -10,7 +10,7 @@
 #' @seealso \code{\link{getWISKImetadata}} \code{\link{findWISKItimeseries}}
 #' @examples
 #' # get values for Fisera Ridge air temperatures (Original time series) 
-#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
+#' FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='MST')
 #' summary(FiseraTvalues)
 #' @export
 
@@ -24,17 +24,17 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   # if end date not specified, retrun all data to end
   # if neither specified, return all data
 
-  stock <-'KiWIS/KiWIS?service=kisters&type=queryServices&request=getTimeseriesValues&datasource=0&format=ascii&dateformat=yyyy-MM-dd%20HH:mm:ss&ts_id='
-  WISKIstring <- paste(site.url, stock, timeSeries,sep='')
-  WISKIstring <- paste(WISKIstring,'&returnfields=Timestamp,Value,Quality%20Code',sep='')
+  stock <- 'KiWIS/KiWIS?service=kisters&type=queryServices&request=getTimeseriesValues&datasource=0&format=ascii&dateformat=yyyy-MM-dd%20HH:mm:ss&ts_id='
+  WISKIstring <- paste(site.url, stock, timeSeries, sep = '')
+  WISKIstring <- paste(WISKIstring,'&returnfields=Timestamp,Value,Quality%20Code', sep = '')
   # check parameters
   timeSeries <- as.character(timeSeries)
-  if (timeSeries == ''){
+  if (timeSeries == '') {
     cat("Error: missing time series'\n")
     return(FALSE)
   }
   
-  if (timezone == ''){
+  if (timezone == '') {
     cat("Error: missing time zone'\n")
     return(FALSE)
   }
@@ -42,38 +42,26 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   if (startDate == '')
     startDate <- '1900-01-01'
   
-  if(endDate == '')
+  if (endDate == '')
     endDate <- Sys.Date()
   
-  WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,'&timezone=',timezone,sep='')
+  WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,
+                       '&timezone=',timezone,sep = '')
   #WISKIstring <- paste(WISKIstring,'&from=',startDate,'&to=',endDate,sep='')
   # create name for variable from metadata for time series
   variable.name <- getWISKIvariablename(timeSeries, site.url)
   
     
   # do something, or tell me why it failed
-  fetchdata <- function(url){
-    tryCatch(
-        ## This is what I want to do:
-        data <- utils::read.table(url, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
-        ,
-        ## But if an error occurs, do the following: 
-        error=function(error_message) {
-            message("Skipping this variable becaues no data for this period.")
-            message(error_message)
-            return(NA)
-        }
-    )
-}
+ 
   data <- fetchdata(WISKIstring)
-  if(!is.na(NA)) {
-  names(data) <- c('time', variable.name,'QualityCode')
-  
-  # convert WISKI date/time to R time
-  # example: 2013-05-01T00:00:00.000+00:00
-  data$time <- strptime(as.character(data$time), format='%Y-%m-%d %H:%M:%S')
-  # convert data to numeric - missing values will be NA
-  data[,2] <- as.numeric(as.character(data[,2]))
+  if (length(data) > 1) {
+    names(data) <- c('time', variable.name, 'QualityCode')
+    # convert WISKI date/time to R time
+    # example: 2013-05-01T00:00:00.000+00:00
+    data$time <- strptime(as.character(data$time), format = '%Y-%m-%d %H:%M:%S')
+    # convert data to numeric - missing values will be NA
+    data[,2] <- as.numeric(as.character(data[,2]))
   }
   return(data)
 }

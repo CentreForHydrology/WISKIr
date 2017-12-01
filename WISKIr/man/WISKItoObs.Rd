@@ -2,7 +2,7 @@
 % Please edit documentation in R/WISKItoObs.R
 \name{WISKItoObs}
 \alias{WISKItoObs}
-\title{Converts a WISKI time series to an obs dataframe}
+\title{Converts a WISKI time series to a \pkg{CRHMr} obs dataframe}
 \usage{
 WISKItoObs(WISKItimeseries, timezone = "", varName = "")
 }
@@ -14,7 +14,7 @@ WISKItoObs(WISKItimeseries, timezone = "", varName = "")
 \item{varName}{Optional. Name for the variable. If not specified (the default) then a name will be guessed from the units. Note that many different variables have the same units, so the guess might not be very good!}
 }
 \description{
-Converts the WISKI date/time to a CRHM datetime. If possible, it will also convert the variable name to a CRHM variable name. Note that this may be incorrect, as it is attempting to infer the variable from its units.
+Converts the WISKI date/time to a \pkg{CRHMr} datetime. If possible, it will also convert the variable name to a CRHM variable name. Note that this may be incorrect, as it is attempting to infer the variable from its units.
 }
 \examples{
 FiseraTvalues <- getWISKIvalues('9296042','2013-01-01','2013-06-30', timezone='CST')
