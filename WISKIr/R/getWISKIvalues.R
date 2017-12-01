@@ -59,8 +59,7 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
         ,
         ## But if an error occurs, do the following: 
         error=function(error_message) {
-            message("Yet another error message.")
-            message("Here is the actual R error message:")
+            message("Skipping this variable becaues no data for this period.")
             message(error_message)
             return(NA)
         }
