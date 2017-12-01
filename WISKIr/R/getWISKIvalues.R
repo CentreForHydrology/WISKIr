@@ -52,7 +52,7 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   
     
   # do something, or tell me why it failed
-  my_function <- function(url){
+  fetchdata <- function(url){
     tryCatch(
         ## This is what I want to do:
         data <- utils::read.table(url, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
@@ -65,7 +65,7 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
         }
     )
 }
-  data <- my_function(WISKIstring)
+  data <- fetchdata(WISKIstring)
   if(!is.na(NA)) {
   names(data) <- c('time', variable.name,'QualityCode')
   
