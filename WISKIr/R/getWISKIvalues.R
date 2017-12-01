@@ -52,12 +52,29 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   
   # replace spaces with underscores in variable name
   #variable.name <- str_replace(variable.name, ' ', '_')
-  data <- lapply(WISKIstring, function(x) {
-    tmp <- try(read.table(x,  sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE))
-    if (!inherits(tmp, 'try-error')) tmp
-  })
-  
+  #data <- lapply(WISKIstring, function(x) {
+  #  tmp <- try(read.table(x,  sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE))
+  #  if (!inherits(tmp, 'try-error')) tmp
+  #})
+    
+  # do something, or tell me why it failed
+my_function <- function(baz){
+    tryCatch(
+        ## This is what I want to do:
+        data <- utils::read.table(baz, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
+        ,
+        ## But if an error occurs, do the following: 
+        error=function(error_message) {
+            message("Yet another error message.")
+            message("Here is the actual R error message:")
+            message(error_message)
+            return(NA)
+        }
+    )
+}
+  data <- my_function(WISKIstring)
   #data <- utils::read.table(WISKIstring, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
+  if(data!=NA) {
   names(data) <- c('time', variable.name,'QualityCode')
   
   # convert WISKI date/time to R time
@@ -65,6 +82,6 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   data$time <- strptime(as.character(data$time), format='%Y-%m-%d %H:%M:%S')
   # convert data to numeric - missing values will be NA
   data[,2] <- as.numeric(as.character(data[,2]))
-  
+  }
   return(data)
 }
