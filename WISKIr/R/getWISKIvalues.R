@@ -74,7 +74,7 @@ my_function <- function(baz){
 }
   data <- my_function(WISKIstring)
   #data <- utils::read.table(WISKIstring, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
-  if(data!=NA) {
+  if(!is.na(NA)) {
   names(data) <- c('time', variable.name,'QualityCode')
   
   # convert WISKI date/time to R time
