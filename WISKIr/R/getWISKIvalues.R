@@ -52,8 +52,12 @@ getWISKIvalues <- function(timeSeries='', startDate='1900-01-01',
   
   # replace spaces with underscores in variable name
   #variable.name <- str_replace(variable.name, ' ', '_')
-  print(WISKIstring)
-  data <- utils::read.table(WISKIstring, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
+  data <- lapply(WISKIstring, function(x) {
+    tmp <- try(read.table(x,  sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE))
+    if (!inherits(tmp, 'try-error')) tmp
+  })
+  
+  #data <- utils::read.table(WISKIstring, sep='\t', header=FALSE, skip=3, stringsAsFactors=FALSE)
   names(data) <- c('time', variable.name,'QualityCode')
   
   # convert WISKI date/time to R time
