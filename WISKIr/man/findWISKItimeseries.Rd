@@ -12,7 +12,15 @@ findWISKItimeseries(stationName, site.url = "http://giws.usask.ca:8080/")
 \item{site.url}{Optional. A character string containing the url of the WISKI web server. Defaults to the Global Institute for Water Security (GIWS) server: \code{'http://giws.usask.ca:8080/'}. As this package is intended for use by the GIWS hydrological community, it is usually unnecessary to specify the web server.}
 }
 \value{
-If unsuccessful, returns \code{FALSE}. If successful, returns a dataframe containing \item{station_name}{Name of station, specified by \code{stationName}} \item{station_no}{WISKI number of station} \item{station_id}{WISKI station ID number} \item{ts_id}{WISKI time series ID number} \item{ts_name}{WISKI time series name} \item{parametertype_id}{WISKI ID number of parameter type of time series} \item{parametertype_name}{WISKI name of parameter type of time series}
+If unsuccessful, returns \code{FALSE}. If successful, returns a dataframe containing 
+\item{station_name}{Name of station, specified by \code{stationName}} 
+\item{station_no}{WISKI number of station} 
+\item{station_id}{WISKI station ID number} 
+\item{ts_id}{WISKI time series ID number} 
+\item{ts_name}{WISKI time series name} 
+\item{parametertype_id}{WISKI ID number of parameter type of time series} 
+\item{parametertype_name}{WISKI name of parameter type of time series}
+\item{stationparameter_name}{Name of parameter in the staton}
 }
 \description{
 Queries a WISKI web server to get a list of available time series which have the specified station name.
